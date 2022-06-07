@@ -11,6 +11,9 @@ export default {
     return {
       loaded: false
     }
+  },
+  created() {
+    this.$store.commit("page_change", "aboutme");
   }
 }
 </script>

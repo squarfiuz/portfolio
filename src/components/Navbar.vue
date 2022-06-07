@@ -7,8 +7,8 @@
       </router-link>
     </div>
     <div class="menu">
-      <router-link to="/" class="link">Accueil</router-link>
-      <router-link to="/aboutme" class="link">A Propos De Moi</router-link>
+      <router-link to="/" :class="`link ${this.$store.state.page === 'home' ? 'active' : ''}`">Accueil</router-link>
+      <router-link to="/aboutme" :class="`link ${this.$store.state.page === 'aboutme' ? 'active' : ''}`">A Propos De Moi</router-link>
     </div>
   </nav>
 </template>
@@ -36,7 +36,7 @@ export default {
   justify-content: space-between;
   background-color: var(--navbar-color);
   box-sizing: border-box;
-  padding: 0 35px;
+  padding: 0 2.5rem;
   height: 6rem;
   width: 100%;
 
@@ -77,9 +77,29 @@ export default {
       margin-left: 1.5rem;
       transition: background-size 0.3s;
 
+      &.active {
+        background-size: 100% 100%;
+      }
+
       &:hover {
         background-size: 100% 100%;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    padding: 0 1.5rem;
+
+    .brand {
+      .link {
+        .username { display: none;}
+      }
+    }
+
+    .menu {
+      .link { font-size: 16px; }
     }
   }
 }

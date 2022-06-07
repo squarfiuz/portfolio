@@ -74,9 +74,23 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "index",
+  data() {
+    return {
+      loaded: false
+    }
+  },
+  created() {
+    this.$store.commit("page_change", "home");
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .content {
-  padding: 0 20%;
+  padding: 0 10%;
 
   .slice {
     z-index: -1;
@@ -119,7 +133,7 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding: 1rem 5rem;
+        padding: 1rem 0;
         height: 100%;
 
         .username {
@@ -135,7 +149,7 @@
         .description {
           color: #fff;
           text-align: center;
-          padding: 0 10rem;
+          padding: 0 15%;
         }
       }
     }
@@ -160,11 +174,9 @@
 
       .left {
         display: flex;
+        align-items: center;
 
         .logo {
-          display: flex;
-          align-items: center;
-          justify-content: center;
           height: 4rem;
           width: 4rem;
         }
@@ -172,13 +184,9 @@
         .text {
           margin-left: 1.5rem;
 
-          .name {
-            color: #fff;
-          }
+          .name { color: #fff; }
 
-          .url {
-            color: #a3a3a3;
-          }
+          .url { color: #a3a3a3; }
         }
       }
 
@@ -195,8 +203,90 @@
 
       &:hover {
         .right {
-          .arrow-right {
-            transform: translateX(0.5rem);
+          .arrow-right { transform: translateX(0.5rem); }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1336px) {
+  .content {
+    .links { justify-content: center; }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .content {
+    .card {
+      .info {
+        .bottom {
+          .description {
+            font-size: 14px;
+            padding: 0 7%;
+          }
+        }
+      }
+    }
+
+    .links {
+      .link {
+        padding: 0 1.5rem;
+        margin-bottom: 2.5rem;
+        height: 5rem;
+        width: 28rem;
+
+        .left {
+          .logo {
+            height: 3rem;
+            width: 3rem;
+          }
+
+          .text {
+            margin-left: 1rem;
+
+            .name { font-size: 18px; }
+
+            .url { font-size: 14px; }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .content {
+    .card {
+      .info {
+        .bottom {
+          .description {
+            font-size: 14px;
+            padding: 0 7%;
+          }
+        }
+      }
+    }
+
+    .links {
+      .link {
+        padding: 0 1rem;
+        margin-bottom: 2.5rem;
+        height: 5rem;
+        width: 20rem;
+
+        .left {
+          .logo {
+            height: 2.5rem;
+            width: 2.5rem;
+          }
+
+          .text {
+            margin-left: 0.75rem;
+
+            .name { font-size: 16px; }
+
+            .url { font-size: 12px; }
           }
         }
       }
