@@ -1,22 +1,18 @@
 <template>
-  <div v-if="loaded">
-    <nav-bar class="nav-bar"></nav-bar>
+  <Navbar class="nav-bar"></Navbar>
+  <main class="page">
     <router-view class="content"></router-view>
-  </div>
+  </main>
 </template>
 
-<script>
+<script setup>
 import Navbar from '../components/Navbar.vue';
-
-export default {
-  name: 'index',
-  components: {
-    'nav-bar': Navbar
-  },
-  data() {
-    return {
-      loaded: true
-    }
-  }
-}
 </script>
+
+<style lang="scss" scoped>
+.page {
+  padding-top: var(--header-height);
+
+  .content { height: 100%; }
+}
+</style>

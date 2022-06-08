@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="slice"></div>
+    <div class="background"></div>
     <div class="card">
       <div class="info">
         <div class="top">
-          <img src="../../assets/avatar.png" alt="avatar" class="avatar">
+          <img src="../../assets/images/avatar.png" alt="avatar" class="avatar">
         </div>
         <div class="bottom">
           <h2 class="username">@squarfiuz</h2>
@@ -17,56 +17,56 @@
       <a href="discord:/users/945318973807935558" target="_blank">
         <div class="link">
           <div class="left">
-            <img src="../../assets/svg/discord.svg" alt="discord logo" class="logo">
+            <font-awesome-icon icon="discord" type="fab" class="icon" />
             <div class="text">
               <h2 class="name">Mon profil Discord</h2>
               <p class="url">discord:/users/945318973807935558</p>
             </div>
           </div>
           <div class="right">
-            <img src="../../assets/svg/arrow-right.svg" alt="arrow right" class="arrow-right">
+            <font-awesome-icon icon="arrow-right" type="fas" class="icon" />
           </div>
         </div>
       </a>
       <a href="https://discord.gg/SgfzZPckVT" target="_blank">
         <div class="link">
           <div class="left">
-            <img src="../../assets/svg/discord.svg" alt="discord logo" class="logo">
+            <font-awesome-icon icon="discord" type="fab" class="icon" />
             <div class="text">
               <h2 class="name">Mon serveur Discord</h2>
               <p class="url">https://discord.gg/devos-code</p>
             </div>
           </div>
           <div class="right">
-            <img src="../../assets/svg/arrow-right.svg" alt="arrow right" class="arrow-right">
+            <font-awesome-icon icon="arrow-right" type="fas" class="icon" />
           </div>
         </div>
       </a>
       <a href="https://github.com/squarfiuz" target="_blank">
         <div class="link">
           <div class="left">
-            <img src="../../assets/svg/github.svg" alt="github logo" class="logo">
+            <font-awesome-icon icon="github" type="fab" class="icon" />
             <div class="text">
               <h2 class="name">GitHub</h2>
               <p class="url">https://github.com/squarfiuz</p>
             </div>
           </div>
           <div class="right">
-            <img src="../../assets/svg/arrow-right.svg" alt="arrow right" class="arrow-right">
+            <font-awesome-icon icon="arrow-right" type="fas" class="icon" />
           </div>
         </div>
       </a>
       <a href="https://twitter.com/squarfiuz" target="_blank">
         <div class="link">
           <div class="left">
-            <img src="../../assets/svg/twitter.svg" alt="github logo" class="logo">
+            <font-awesome-icon icon="twitter" type="fab" class="icon" />
             <div class="text">
               <h2 class="name">Twitter</h2>
               <p class="url">https://twitter.com/squarfiuz</p>
             </div>
           </div>
           <div class="right">
-            <img src="../../assets/svg/arrow-right.svg" alt="arrow right" class="arrow-right">
+            <font-awesome-icon icon="arrow-right" type="fas" class="icon" />
           </div>
         </div>
       </a>
@@ -74,39 +74,34 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "index",
-  data() {
-    return {
-      loaded: false
-    }
-  },
-  created() {
-    this.$store.commit("page_change", "home");
-  }
-}
+<script setup>
+import { useStore } from "vuex";
+
+const store = useStore();
+store.commit("page_change", "home");
 </script>
 
 <style lang="scss" scoped>
 .content {
-  padding: 0 10%;
+  padding: 15rem 10% 0;
 
-  .slice {
-    z-index: -1;
+  .background {
     position: absolute;
-    left: 0;
     top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-index-background);
+    background-image: url("../../assets/images/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 35rem;
-    width: 130%;
-    transform: translate(-40px, -20%) rotate(-5.5deg);
-    background-color: #b044ce;
+    width: 100%;
   }
 
   .card {
     background-color: var(--card-color);
     border-radius: 0.8rem;
-    margin-top: 15rem;
     height: 20rem;
     width: 100%;
 
@@ -137,7 +132,7 @@ export default {
         height: 100%;
 
         .username {
-          color: #fff;
+          color: var(--text-color);
           margin-bottom: 0.25rem;
         }
 
@@ -147,7 +142,7 @@ export default {
         }
 
         .description {
-          color: #fff;
+          color: var(--text-color);
           text-align: center;
           padding: 0 15%;
         }
@@ -166,7 +161,7 @@ export default {
       align-items: center;
       justify-content: space-between;
       background-color: var(--card-color);
-      box-sizing: border-box;
+      border-radius: 0.25rem;
       padding: 0 1.5rem;
       margin-bottom: 2.5rem;
       height: 5rem;
@@ -176,7 +171,8 @@ export default {
         display: flex;
         align-items: center;
 
-        .logo {
+        .icon {
+          fill: #a395e9;
           height: 4rem;
           width: 4rem;
         }
@@ -184,7 +180,7 @@ export default {
         .text {
           margin-left: 1.5rem;
 
-          .name { color: #fff; }
+          .name { color: var(--text-color); }
 
           .url { color: #a3a3a3; }
         }
@@ -194,7 +190,8 @@ export default {
         display: flex;
         align-items: center;
 
-        .arrow-right {
+        .icon {
+          fill: #5865f2;
           height: 1.5rem;
           width: 1.5rem;
           transition: 0.3s;
@@ -203,7 +200,7 @@ export default {
 
       &:hover {
         .right {
-          .arrow-right { transform: translateX(0.5rem); }
+          .icon { transform: translateX(0.5rem); }
         }
       }
     }
@@ -237,7 +234,7 @@ export default {
         width: 28rem;
 
         .left {
-          .logo {
+          .icon {
             height: 3rem;
             width: 3rem;
           }
@@ -276,7 +273,7 @@ export default {
         width: 20rem;
 
         .left {
-          .logo {
+          .icon {
             height: 2.5rem;
             width: 2.5rem;
           }
