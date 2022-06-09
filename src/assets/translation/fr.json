@@ -1,0 +1,24 @@
+{
+  "components": {
+    "Navbar": {
+      "navlinks": {
+        "home": "Accueil",
+        "aboutme": "A Propos De Moi",
+        "language": "Langue",
+        "github": "GitHub"
+      }
+    }
+  },
+  "pages": {
+    "index": {
+      "index": {
+        "location": "France, Paris",
+        "description": "Hey, je m'appelle Pierre-Alexis et je suis passionné par le developpement. Je suis développeur web full stack et mes technologies préférées sont Vue.js ainsi qu'Adonis.js. Je m'interesse en ce moment au C++ pour un énorme projet !",
+        "links": {
+          "discord_profile": "Mon profil Discord",
+          "discord_server": "Mon serveur Discord"
+        }
+      }
+    }
+  }
+}

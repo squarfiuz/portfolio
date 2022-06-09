@@ -4,20 +4,24 @@ import { useDark, useToggle } from "@vueuse/core";
 const store = createStore({
   state () {
     return {
+      language: "en",
       is_dark: useDark({
         selector: 'html',
         attribute: 'class',
         valueDark: 'dark',
         valueLight: 'light',
       }),
-      page: 'home'
+      page: 'home',
     }
   },
   mutations: {
-    page_change (state, page) {
+    change_language (state, language) {
+      state.language = language;
+    },
+    change_page (state, page) {
       state.page = page;
     },
-    theme_change (state) {
+    change_theme (state) {
       state.is_dark = !state.is_dark;
       useToggle(state.is_dark);
     }

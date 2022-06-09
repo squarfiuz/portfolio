@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+    <h1 style="color: #fff">En developpement</h1>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import { useStore } from "vuex";
 
 const store = useStore();
-store.commit("page_change", "aboutme");
+store.commit("change_page", "aboutme");
 </script>
 
 <style lang="scss" scoped>

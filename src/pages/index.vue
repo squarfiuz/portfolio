@@ -7,6 +7,16 @@
 
 <script setup>
 import Navbar from '../components/Navbar.vue';
+import { useStore } from "vuex";
+
+const store = useStore();
+
+if (!localStorage.language) {
+  store.commit("change_language", "en");
+  localStorage.language = "en";
+} else {
+  store.commit("change_language", localStorage.language);
+}
 </script>
 
 <style lang="scss" scoped>

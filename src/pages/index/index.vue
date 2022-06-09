@@ -2,83 +2,91 @@
   <div>
     <div class="background"></div>
     <div class="card">
-      <div class="info">
-        <div class="top">
-          <img src="../../assets/images/avatar.png" alt="avatar" class="avatar">
-        </div>
-        <div class="bottom">
-          <h2 class="username">@squarfiuz</h2>
-          <p class="location">France, Paris</p>
-          <p class="description">Hey, je m'appelle Pierre-Alexis et je suis passionné par le developpement. Je suis développeur web full stack et mes technologies préférées sont Vue.js ainsi qu'Adonis.js. Je m'interesse en ce moment au C++ pour un énorme projet !</p>
-        </div>
+      <div class="top">
+        <img src="../../assets/images/avatar.png" alt="avatar" class="avatar">
+      </div>
+      <div class="bottom">
+        <h2 class="username">@squarfiuz</h2>
+        <p class="location">{{ translation.location }}</p>
+        <p class="description">{{ translation.description }}</p>
       </div>
     </div>
     <div class="links">
-      <a href="discord:/users/945318973807935558" target="_blank">
-        <div class="link">
-          <div class="left">
+      <div class="link">
+        <a href="discord:/users/945318973807935558" target="_blank" class="link-button">
+          <div class="link-icon">
             <font-awesome-icon icon="discord" type="fab" class="icon" />
-            <div class="text">
-              <h2 class="name">Mon profil Discord</h2>
-              <p class="url">discord:/users/945318973807935558</p>
-            </div>
           </div>
-          <div class="right">
+          <div class="link-text">
+            <h2 class="name">{{ translation.links.discord_profile }}</h2>
+            <p class="url">discord:/users/945318973807935558</p>
+          </div>
+          <div class="flex-grow"></div>
+          <div class="link-arrow">
             <font-awesome-icon icon="arrow-right" type="fas" class="icon" />
           </div>
-        </div>
-      </a>
-      <a href="https://discord.gg/SgfzZPckVT" target="_blank">
-        <div class="link">
-          <div class="left">
+        </a>
+      </div>
+      <div class="link">
+        <a href="https://discord.gg/SgfzZPckVT" target="_blank" class="link-button">
+          <div class="link-icon">
             <font-awesome-icon icon="discord" type="fab" class="icon" />
-            <div class="text">
-              <h2 class="name">Mon serveur Discord</h2>
-              <p class="url">https://discord.gg/devos-code</p>
-            </div>
           </div>
-          <div class="right">
+          <div class="link-text">
+            <h2 class="name">{{ translation.links.discord_server }}</h2>
+            <p class="url">https://discord.gg/devos-code</p>
+          </div>
+          <div class="flex-grow"></div>
+          <div class="link-arrow">
             <font-awesome-icon icon="arrow-right" type="fas" class="icon" />
           </div>
-        </div>
-      </a>
-      <a href="https://github.com/squarfiuz" target="_blank">
-        <div class="link">
-          <div class="left">
+        </a>
+      </div>
+      <div class="link">
+        <a href="https://github.com/squarfiuz" target="_blank" class="link-button">
+          <div class="link-icon">
             <font-awesome-icon icon="github" type="fab" class="icon" />
-            <div class="text">
-              <h2 class="name">GitHub</h2>
-              <p class="url">https://github.com/squarfiuz</p>
-            </div>
           </div>
-          <div class="right">
+          <div class="link-text">
+            <h2 class="name">GitHub</h2>
+            <p class="url">https://github.com/squarfiuz</p>
+          </div>
+          <div class="flex-grow"></div>
+          <div class="link-arrow">
             <font-awesome-icon icon="arrow-right" type="fas" class="icon" />
           </div>
-        </div>
-      </a>
-      <a href="https://twitter.com/squarfiuz" target="_blank">
-        <div class="link">
-          <div class="left">
+        </a>
+      </div>
+      <div class="link">
+        <a href="https://twitter.com/squarfiuz" target="_blank" class="link-button">
+          <div class="link-icon">
             <font-awesome-icon icon="twitter" type="fab" class="icon" />
-            <div class="text">
-              <h2 class="name">Twitter</h2>
-              <p class="url">https://twitter.com/squarfiuz</p>
-            </div>
           </div>
-          <div class="right">
+          <div class="link-text">
+            <h2 class="name">Twitter</h2>
+            <p class="url">https://twitter.com/squarfiuz</p>
+          </div>
+          <div class="flex-grow"></div>
+          <div class="link-arrow">
             <font-awesome-icon icon="arrow-right" type="fas" class="icon" />
           </div>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { useStore } from "vuex";
+import en from "../../assets/translation/en.json";
+import fr from "../../assets/translation/fr.json";
+
+const translations = { en, fr };
 
 const store = useStore();
-store.commit("page_change", "home");
+store.commit("change_page", "home");
+
+const translation = translations[store.state.language].pages.index.index;
 </script>
 
 <style lang="scss" scoped>
@@ -102,50 +110,53 @@ store.commit("page_change", "home");
   .card {
     background-color: var(--card-color);
     border-radius: 0.8rem;
-    height: 20rem;
-    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    height: auto;
+    width: 90%;
+    max-width: 1500px;
 
-    .info {
+    .top {
+      display: flex;
+      justify-content: center;
       transform: translateY(-30%);
 
-      .top {
-        display: flex;
-        justify-content: center;
+      .avatar {
+        border-radius: 50%;
+        height: 12rem;
+        width: 12rem;
+        transition: 0.3s;
 
-        .avatar {
-          border-radius: 50%;
-          height: 12rem;
-          width: 12rem;
-          transition: 0.3s;
-
-          &:hover {
-            transform: translateY(-3%);
-          }
+        &:hover {
+          transform: translateY(-3%);
         }
       }
+    }
 
-      .bottom {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        padding: 1rem 0;
-        height: 100%;
+    .bottom {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-left: auto;
+      margin-right: auto;
+      height: 100%;
+      max-width: 1000px;
+      transform: translateY(-20%);
 
-        .username {
-          color: var(--text-color);
-          margin-bottom: 0.25rem;
-        }
+      .username {
+        color: var(--text-color);
+        margin-bottom: 0.25rem;
+      }
 
-        .location {
-          color: #a3a3a3;
-          margin-bottom: 1.5rem;
-        }
+      .location {
+        color: var(--text-description-color);
+        margin-bottom: 1.5rem;
+      }
 
-        .description {
-          color: var(--text-color);
-          text-align: center;
-          padding: 0 15%;
-        }
+      .description {
+        color: var(--text-color);
+        text-align: center;
+        padding: 0 15%;
       }
     }
   }
@@ -154,7 +165,11 @@ store.commit("page_change", "home");
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 7rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6rem;
+    width: 100%;
+    max-width: 1000px;
 
     .link {
       display: flex;
@@ -162,128 +177,88 @@ store.commit("page_change", "home");
       justify-content: space-between;
       background-color: var(--card-color);
       border-radius: 0.25rem;
-      padding: 0 1.5rem;
-      margin-bottom: 2.5rem;
-      height: 5rem;
-      width: 33rem;
+      margin-bottom: 5%;
+      width: 49%;
+      min-width: 440px;
 
-      .left {
+      .link-button {
         display: flex;
         align-items: center;
+        height: 80px;
+        width: 100%;
 
-        .icon {
-          fill: #a395e9;
-          height: 4rem;
-          width: 4rem;
+        .link-icon {
+          padding: 15px;
+          height: 100%;
+          width: 100px;
+
+          .icon {
+            fill: var(--social-network-icon-color);
+            height: 100%;
+            width: 100%;
+          }
         }
 
-        .text {
-          margin-left: 1.5rem;
+        .link-text {
+          overflow: hidden;
 
           .name { color: var(--text-color); }
 
-          .url { color: #a3a3a3; }
+          .url { color: var(--text-description-color); }
         }
-      }
 
-      .right {
-        display: flex;
-        align-items: center;
+        .flex-grow { flex-grow: 1; }
 
-        .icon {
-          fill: #5865f2;
-          height: 1.5rem;
-          width: 1.5rem;
-          transition: 0.3s;
+        .link-arrow {
+          display: flex;
+          align-items: center;
+          padding-right: 20px;
+
+          .icon {
+            fill: var(--arrow-icon-color);
+            height: 1.5rem;
+            width: 1.5rem;
+            transition: 0.3s;
+          }
         }
-      }
 
-      &:hover {
-        .right {
-          .icon { transform: translateX(0.5rem); }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 1336px) {
-  .content {
-    .links { justify-content: center; }
-  }
-}
-
-@media only screen and (max-width: 640px) {
-  .content {
-    .card {
-      .info {
-        .bottom {
-          .description {
-            font-size: 14px;
-            padding: 0 7%;
+        &:hover {
+          .link-arrow {
+            .icon { transform: translateX(0.5rem); }
           }
         }
       }
     }
+  }
+}
 
+@media only screen and (max-width: 1190px) {
+  .content {
+    .links {
+      .link { width: 100%; }
+    }
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .content {
     .links {
       .link {
-        padding: 0 1.5rem;
-        margin-bottom: 2.5rem;
-        height: 5rem;
-        width: 28rem;
+        min-width: 100%;
 
-        .left {
-          .icon {
-            height: 3rem;
-            width: 3rem;
-          }
-
-          .text {
-            margin-left: 1rem;
-
-            .name { font-size: 18px; }
-
-            .url { font-size: 14px; }
-          }
+        .link-button {
+          .link-icon { width: 70px; }
         }
-      }
-    }
-  }
-}
 
-@media only screen and (max-width: 500px) {
-  .content {
-    .card {
-      .info {
-        .bottom {
-          .description {
-            font-size: 14px;
-            padding: 0 7%;
-          }
+        .link-text {
+          .name { font-size: 1rem; }
+          .url { font-size: 0.75rem; }
         }
-      }
-    }
 
-    .links {
-      .link {
-        padding: 0 1rem;
-        margin-bottom: 2.5rem;
-        height: 5rem;
-        width: 20rem;
-
-        .left {
+        .link-arrow {
           .icon {
-            height: 2.5rem;
-            width: 2.5rem;
-          }
-
-          .text {
-            margin-left: 0.75rem;
-
-            .name { font-size: 16px; }
-
-            .url { font-size: 12px; }
+            height: 0.75rem;
+            width: 0.75rem;
           }
         }
       }

@@ -24,25 +24,33 @@ html {
 html.dark {
   --background-color: #0b111e;
   --navbar-color: #151c28;
+  --dropdown-color: #131924;
   --card-color: #151c28;
   --link-color: #fff;
   --link-color-over: #a395e9;
   --text-color: #fff;
+  --text-description-color: #a3a3a3;
   --theme-icon-color: #fff;
   --theme-button-color-hover: #0b111e;
   --sidebar-icon-color: #fff;
+  --social-network-icon-color: #a395e9;
+  --arrow-icon-color: #5865f2;
 }
 
 html.light {
   --background-color: #caced6;
   --navbar-color: #fff;
+  --dropdown-color: #fff;
   --card-color: #fff;
   --link-color: #000;
-  --link-color-over: #a395e9;
+  --link-color-over: #6f5fdb;
   --text-color: #000;
+  --text-description-color: #a3a3a3;
   --theme-icon-color: #a3a3a3;
   --theme-button-color-hover: #d8d8d8;
   --sidebar-icon-color: #000;
+  --social-network-icon-color: #6f5fdb;
+  --arrow-icon-color: #5865f2;
 }
 
 #app {  
