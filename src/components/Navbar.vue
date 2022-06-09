@@ -47,7 +47,8 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { ref } from "vue";
+import { useRouter } from "vue-router"
 import { useStore } from "vuex";
 import en from "../assets/translation/en.json";
 import fr from "../assets/translation/fr.json";
@@ -59,17 +60,17 @@ const store = useStore();
 
 const translation = translations[store.state.language].components.Navbar;
 
-const sidebar_enable = false;
+const sidebar_enable = ref(false);
 
 const navlinks = [
   {
     id: "home",
-    link: '/',
+    link: "/",
     type: "router-link"
   },
   {
     id: "aboutme",
-    link: '/aboutme',
+    link: "/aboutme",
     type: "router-link"
   },
   {
@@ -78,12 +79,12 @@ const navlinks = [
     options: [
       {
         name: "English",
-        id: 'en',
+        id: "en",
         type: "button"
       },
       {
         name: "Français",
-        id: 'fr',
+        id: "fr",
         type: "button"
       }
     ]
@@ -99,7 +100,7 @@ const navlinks = [
 function change_language(language) {
   store.commit("change_language", language);
   localStorage.language = language;
-  router.go();
+  // router.go();
 }
 
 function change_theme() {
@@ -107,7 +108,7 @@ function change_theme() {
 }
 
 function sidebar_toggle() {
-  sidebar_enable = !sidebar_enable;
+  sidebar_enable.value = !sidebar_enable.value;
 };
 
 
@@ -152,6 +153,7 @@ function sidebar_toggle() {
 }
 
 .sidebar {
+  display: none;
   position: fixed;
   top: var(--header-height);
   bottom: 0;
@@ -287,5 +289,7 @@ function sidebar_toggle() {
 
     .nav-links { display: none; }
   }
+
+  .sidebar { display: block; }
 }
 </style>
