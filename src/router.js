@@ -16,6 +16,11 @@ const routes = [
         path: '/aboutme',
         component: () => import('./pages/index/aboutme.vue'),
         name: 'index-aboutme'
+      },
+      {
+        path: '/contactme',
+        component: () => import('./pages/index/contactme.vue'),
+        name: 'index-contactme'
       }
     ]
   }

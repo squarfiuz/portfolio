@@ -77,6 +77,7 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useStore } from "vuex";
 import en from "../../assets/translation/en.json";
 import fr from "../../assets/translation/fr.json";
@@ -86,7 +87,7 @@ const translations = { en, fr };
 const store = useStore();
 store.commit("change_page", "home");
 
-const translation = translations[store.state.language].pages.index.index;
+const translation = ref(translations[store.state.language].pages.index.index);
 </script>
 
 <style lang="scss" scoped>

@@ -4,6 +4,7 @@
       "navlinks": {
         "home": "Home",
         "aboutme": "About Me",
+        "contactme": "Contactez Moi",
         "language": "Language",
         "github": "GitHub"
       }
@@ -17,6 +18,14 @@
         "links": {
           "discord_profile": "My Discord profile",
           "discord_server": "My Discord guild"
+        }
+      },
+      "aboutme": {
+        "title": "My Skills",
+        "subtitles": {
+          "languages": "Languages",
+          "os": "OS",
+          "design": "Design"
         }
       }
     }

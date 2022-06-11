@@ -38,9 +38,29 @@
     </header>
     <aside :class="`sidebar ${sidebar_enable ? 'open' : ''}`">
       <nav class="nav-links">
-        <router-link to="/" :class="`link ${store.state.page === 'home' ? 'active' : ''}`">Acceuil</router-link>
-        <router-link to="/aboutme" :class="`link ${store.state.page === 'aboutme' ? 'active' : ''}`">A Propos De Moi</router-link>
-        <a href="https://github.com/squarfiuz/portfolio" target="_blank" class="link">GitHub <font-awesome-icon icon="arrow-up-right-from-square" type="fa" /></a>
+        <div v-for="navlink in navlinks" :key="navlink.id" class="item">
+          <router-link v-if="navlink.type === 'router-link'" :to="navlink.link" :class="`link ${store.state.page === navlink.id ? 'active' : ''}`">
+            {{ translation.navlinks[navlink.id] }}
+          </router-link>
+          <a v-if="navlink.type === 'link'" :href="navlink.link" target="_blank" class="link">
+            {{ translation.navlinks[navlink.id] }}
+            <font-awesome-icon type="fa" icon="arrow-up-right-from-square" class="icon" />
+          </a>
+          <div v-if="navlink.type === 'dropdown-link'" :class="`dropdown-link ${dropdown_active.includes(navlink.id) ? 'active' : ''}`">
+            <div class="dropdown" @click="dropdown_toggle(navlink.id)">
+              {{ translation.navlinks[navlink.id] }}
+              <font-awesome-icon type="fa" icon="caret-down" class="icon" />
+            </div>
+            <ul class="options">
+              <li v-for="option in navlink.options" :key="option.id" class="option">
+                <div v-if="option.type === 'button'" class="item">
+                  <font-awesome-icon :style="`opacity: ${store.state[navlink.id] === option.id ? '1' : '0'}`" type="fa" icon="caret-right" class="icon" />
+                  <div v-if="navlink.id === 'language'" :class="`button ${store.state.language === option.id ? 'active' : ''}`" @click="change_language(option.id)">{{ option.name }}</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
     </aside>
   </div>
@@ -62,6 +82,8 @@ const translation = translations[store.state.language].components.Navbar;
 
 const sidebar_enable = ref(false);
 
+const dropdown_active = ref([]);
+
 const navlinks = [
   {
     id: "home",
@@ -71,6 +93,11 @@ const navlinks = [
   {
     id: "aboutme",
     link: "/aboutme",
+    type: "router-link"
+  },
+  {
+    id: "contactme",
+    link: "/contactme",
     type: "router-link"
   },
   {
@@ -111,10 +138,101 @@ function sidebar_toggle() {
   sidebar_enable.value = !sidebar_enable.value;
 };
 
+function dropdown_toggle(name) {
+  if (dropdown_active.value.includes(name)) {
+    dropdown_active.value = dropdown_active.value.filter(item => item !== name);
+  } else {
+    dropdown_active.value.push(name);
+  }
+
+  console.log(dropdown_active);
+}
+
 
 </script>
 
 <style lang="scss" scoped>
+.nav-links {
+  display: flex;
+  align-items: center;
+
+  .link {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to top, var(--link-color-over) 0%, var(--link-color-over) 10%, transparent 10.01%) no-repeat left bottom / 0 100%;
+    color: var(--link-color);
+    margin-left: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: background-size 0.3s;
+
+    &:hover, &.active { background-size: 100% 100%; }
+
+    .icon {
+      fill: #a3a3a3;
+      margin-left: 10px;
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+
+.dropdown-link {
+  position: relative;
+
+  .dropdown {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: var(--link-color);
+    margin-left: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    .icon {
+      fill: #a3a3a3;
+      margin-left: 10px;
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  .options {
+    display: none;
+    top: 24px;
+    right: -8px;
+    background-color: var(--dropdown-color);
+    color: var(--text-color);
+    list-style: none;
+    border-radius: 6px;
+    padding: 12px 0;
+    min-width: 128px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
+
+    .item {
+      display: flex;
+      align-items: center;
+
+      .button {
+        cursor: pointer;
+        background: linear-gradient(to top, var(--link-color-over) 0%, var(--link-color-over) 10%, transparent 10.01%) no-repeat left bottom / 0 100%;
+        margin-left: 8px;
+        line-height: 32px;
+        transition: background-size 0.3s;
+
+        &:hover, &.active { background-size: 100% 100%; }
+      }
+
+      .icon {
+        fill: #a3a3a3;
+        margin-left: 10px;
+        height: 18px;
+        width: 18px;
+      }
+    }
+  }
+}
+
 .navbar {
   position: fixed;
   top: 0;
@@ -150,6 +268,22 @@ function sidebar_toggle() {
     font-size: 1.3rem;
     font-weight: 600;
   }
+
+  .nav-links {
+    .dropdown-link {
+      position: relative;
+
+      &:hover {
+        .options { display: block; }
+      }
+
+      .options {
+        position: absolute;
+        top: 26px;
+        right: -8px;
+      }
+    }
+  }
 }
 
 .sidebar {
@@ -174,90 +308,14 @@ function sidebar_toggle() {
     padding: 1rem 1.5rem;
 
     .link { line-height: 46px; }
-  }
-}
 
-.nav-links {
-  display: flex;
-  align-items: center;
-
-  .link {
-    display: flex;
-    align-items: center;
-    background: linear-gradient(to top, var(--link-color-over) 0%, var(--link-color-over) 10%, transparent 10.01%) no-repeat left bottom / 0 100%;
-    color: var(--link-color);
-    margin-left: 1.5rem;
-    font-size: 1.2rem;
-    font-weight: 700;
-    transition: background-size 0.3s;
-
-    &:hover, &.active { background-size: 100% 100%; }
-
-    .icon {
-      fill: #a3a3a3;
-      margin-left: 10px;
-      height: 20px;
-      width: 20px;
-    }
-  }
-
-  .dropdown-link {
-    position: relative;
-
-    .dropdown {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      color: var(--link-color);
-      margin-left: 1.5rem;
-      font-size: 1.2rem;
-      font-weight: 700;
-
-      .icon {
-        fill: #a3a3a3;
-        margin-left: 10px;
-        height: 18px;
-        width: 18px;
+    .dropdown-link {
+      .options {
+        padding: 5px 18px;
       }
-    }
 
-    &:hover {
-      .options { display: block; }
-    }
-
-    .options {
-      position: absolute;
-      display: none;
-      top: 24px;
-      right: -8px;
-      background-color: var(--dropdown-color);
-      color: var(--text-color);
-      list-style: none;
-      border-radius: 6px;
-      padding: 12px 0;
-      min-width: 128px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
-
-      .item {
-        display: flex;
-        align-items: center;
-
-        .button {
-          cursor: pointer;
-          background: linear-gradient(to top, var(--link-color-over) 0%, var(--link-color-over) 10%, transparent 10.01%) no-repeat left bottom / 0 100%;
-          margin-left: 8px;
-          line-height: 32px;
-          transition: background-size 0.3s;
-
-          &:hover, &.active { background-size: 100% 100%; }
-        }
-
-        .icon {
-          fill: #a3a3a3;
-          margin-left: 10px;
-          height: 18px;
-          width: 18px;
-        }
+      &.active {
+        .options { display: block; }
       }
     }
   }

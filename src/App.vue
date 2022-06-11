@@ -40,9 +40,9 @@ html.dark {
 }
 
 html.light {
-  --scrollbar-track: #caced6;
+  --scrollbar-track: #d3d5da;
   --scrollbar-thumb: #fff;
-  --background-color: #caced6;
+  --background-color: #d3d5da;
   --navbar-color: #fff;
   --dropdown-color: #fff;
   --card-color: #fff;
