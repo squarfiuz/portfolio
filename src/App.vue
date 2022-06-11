@@ -22,6 +22,8 @@ html {
 }
 
 html.dark {
+  --scrollbar-track: #0b111e;
+  --scrollbar-thumb: #151c28;
   --background-color: #0b111e;
   --navbar-color: #151c28;
   --dropdown-color: #131924;
@@ -38,6 +40,8 @@ html.dark {
 }
 
 html.light {
+  --scrollbar-track: #caced6;
+  --scrollbar-thumb: #fff;
   --background-color: #caced6;
   --navbar-color: #fff;
   --dropdown-color: #fff;
@@ -70,5 +74,14 @@ body {
   overflow-x: hidden;
   background-color: var(--background-color);
   width: 100%;
+}
+
+::-webkit-scrollbar { width: 10px; }
+
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--scrollbar-thumb);
 }
 </style>

@@ -91,7 +91,7 @@ const translation = translations[store.state.language].pages.index.index;
 
 <style lang="scss" scoped>
 .content {
-  padding: 15rem 10% 0;
+  padding: 10rem 10% 0;
 
   .background {
     position: absolute;
@@ -103,7 +103,7 @@ const translation = translations[store.state.language].pages.index.index;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 35rem;
+    height: 30rem;
     width: 100%;
   }
 

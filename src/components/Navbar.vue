@@ -100,7 +100,7 @@ const navlinks = [
 function change_language(language) {
   store.commit("change_language", language);
   localStorage.language = language;
-  // router.go();
+  router.go();
 }
 
 function change_theme() {
