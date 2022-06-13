@@ -26,6 +26,32 @@
           "languages": "Languages",
           "os": "OS",
           "design": "Design"
+        },
+        "year": "Year",
+        "years": "Years"
+      },
+      "contactme": {
+        "title": "Contact Me",
+        "form": {
+          "name": {
+            "label": "Name",
+            "placeholder": "Your name",
+            "error_require": "Please enter your name"
+          },
+          "email": {
+            "label": "Email",
+            "placeholder": "Your email address",
+            "error_require": "Please enter your email address",
+            "error_format": "Please enter a valid email address"
+          },
+          "message": {
+            "label": "Message",
+            "placeholder": "Your message",
+            "error_require": "Please enter a message"
+          },
+          "button": {
+            "label": "Send the message"
+          }
         }
       }
     }

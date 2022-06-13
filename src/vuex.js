@@ -12,9 +12,17 @@ const store = createStore({
         valueLight: 'light',
       }),
       page: 'home',
+      notifications: []
     }
   },
   mutations: {
+    add_notification(state, { message, type, timeout = 5000 }) {
+      state.notifications.push({
+        message,
+        type,
+        timeout
+      });
+    },
     change_language (state, language) {
       state.language = language;
     },
@@ -24,6 +32,9 @@ const store = createStore({
     change_theme (state) {
       state.is_dark = !state.is_dark;
       useToggle(state.is_dark);
+    },
+    remove_notification(state, index) {
+      state.notifications.splice(index, 1);
     }
   }
 });

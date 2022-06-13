@@ -310,8 +310,12 @@ function dropdown_toggle(name) {
     .link { line-height: 46px; }
 
     .dropdown-link {
+      line-height: 46px;
+
       .options {
-        padding: 5px 18px;
+        background-color: transparent;
+        box-shadow: none;
+        padding: 5px 18px 0;
       }
 
       &.active {

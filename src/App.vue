@@ -19,6 +19,8 @@ html {
   --z-index-background: -1;
   --z-index-sidebar: 6;
   --z-index-navbar: 10;
+  --z-index-notification: 100;
+  --z-index-notification-progress-bar: 101;
 }
 
 html.dark {
@@ -37,6 +39,11 @@ html.dark {
   --sidebar-icon-color: #fff;
   --social-network-icon-color: #a395e9;
   --arrow-icon-color: #5865f2;
+  --email-form-border: #5865f2;
+  --email-form-border-focus: #4755f0;
+  --email-form-button: #5865f2;
+  --email-form-button-hover: #4755f0;
+  --email-form-button-disable: #7881df;
 }
 
 html.light {
@@ -55,18 +62,24 @@ html.light {
   --sidebar-icon-color: #000;
   --social-network-icon-color: #6f5fdb;
   --arrow-icon-color: #5865f2;
+  --email-form-border: #5865f2;
+  --email-form-border-focus: #4755f0;
+  --email-form-button: #5865f2;
+  --email-form-button-hover: #4755f0;
+  --email-form-button-disable: #7881df;
 }
 
-#app {  
+#app, textarea, input, button, p, span {  
   font-family: 'Open Sans', sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
 }
 
-a {
+a, button {
+  cursor: pointer;
   text-decoration: none;
 }
 

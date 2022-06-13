@@ -10,7 +10,7 @@
             <h3 class="skill-name">{{ item.name }}</h3>
             <div class="skill-level">
               <span v-if="['languages', 'design'].includes(skill.id)" class="percentage">{{ item.level }}%</span>
-              <span v-if="['os'].includes(skill.id)" class="percentage">{{ item.years }} years</span>
+              <span v-if="['os'].includes(skill.id)" class="percentage">{{ `${item.years} ${item.years < 2 ? translation.year : translation.years }` }}</span>
               <div class="skill-level-bar">
                 <div class="background"></div>
                 <div v-if="['languages', 'design'].includes(skill.id)" class="bar" :style="{ backgroundColor: item.color, width: `${item.level}%` }"></div>
@@ -76,6 +76,13 @@ const skills = ref([
         id: "nuxtjs",
         color: "#00dc82",
         link: "https://nuxtjs.org"
+      },
+      {
+        name: "Sass",
+        level: 70,
+        id: "sass",
+        color: "#bf4080",
+        link: "https://sass-lang.com"
       },
       {
         name: "Adonis.js",
