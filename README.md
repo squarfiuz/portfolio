@@ -1,10 +1,11 @@
 # squarfiuz Portfolio
 
-# Technologies
+## Technologies
 [Vue.js](https://vuejs.org), [Vuex](https://vuex.vuejs.org), [VueUse](https://vueuse.org), [Vue Router](https://router.vuejs.org), [Sass](https://sass-lang.com)
 
-# Site
+## Site
 [squarfiuz.ga](https://squarfiuz.ga)
+<img src="https://i.imgur.com/HNW7Kde.png" alt="previous">
 
 ## Project setup
 ```
