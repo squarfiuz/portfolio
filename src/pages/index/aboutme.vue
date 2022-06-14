@@ -6,7 +6,7 @@
         <h2 class="subtitle">{{ translation.subtitles[skill.id] }}</h2>
         <div class="cards">
           <a v-for="item in skill[skill.id]" :key="item.id" :href="item.link" target="_blank" class="card">
-            <div class="banner" :style="{ backgroundColor: item.color }"></div>
+            <div class="banner" :style="{ backgroundImage: `url('${item.image}')` }"></div>
             <h3 class="skill-name">{{ item.name }}</h3>
             <div class="skill-level">
               <span v-if="['languages', 'design'].includes(skill.id)" class="percentage">{{ item.level }}%</span>
@@ -47,6 +47,7 @@ const skills = ref([
         level: 90,
         id: "html5",
         color: "#e14d25",
+        image: require("../../assets/images/skills/html5.png"),
         link: "https://developer.mozilla.org/fr/docs/Web/HTML"
       },
       {
@@ -54,6 +55,7 @@ const skills = ref([
         level: 90,
         id: "css3",
         color: "#006eba",
+        image: require("../../assets/images/skills/css3.png"),
         link: "https://developer.mozilla.org/fr/docs/Web/CSS"
       },
       {
@@ -61,6 +63,7 @@ const skills = ref([
         level: 90,
         id: "javascript",
         color: "#f0db4f",
+        image: require("../../assets/images/skills/javascript.png"),
         link: "https://developer.mozilla.org/fr/docs/Web/JavaScript"
       },
       {
@@ -68,6 +71,7 @@ const skills = ref([
         level: 80,
         id: "vuejs",
         color: "#42b883",
+        image: require("../../assets/images/skills/vuejs.png"),
         link: "https://vuejs.org"
       },
       {
@@ -75,6 +79,7 @@ const skills = ref([
         level: 70,
         id: "nuxtjs",
         color: "#00dc82",
+        image: require("../../assets/images/skills/nuxtjs.png"),
         link: "https://nuxtjs.org"
       },
       {
@@ -82,6 +87,7 @@ const skills = ref([
         level: 70,
         id: "sass",
         color: "#bf4080",
+        image: require("../../assets/images/skills/sass.png"),
         link: "https://sass-lang.com"
       },
       {
@@ -89,6 +95,7 @@ const skills = ref([
         level: 80,
         id: "adonisjs",
         color: "#5a45ff",
+        image: require("../../assets/images/skills/adonisjs.png"),
         link: "https://adonisjs.com"
       },
       {
@@ -96,6 +103,7 @@ const skills = ref([
         level: 90,
         id: "expressjs",
         color: "#aeaeae",
+        image: require("../../assets/images/skills/expressjs.png"),
         link: "http://expressjs.com"
       },
       {
@@ -103,6 +111,7 @@ const skills = ref([
         level: 70,
         id: "postgres",
         color: "#306091",
+        image: require("../../assets/images/skills/postgresql.png"),
         link: "https://www.postgresql.org"
       },
       {
@@ -110,6 +119,7 @@ const skills = ref([
         level: 100,
         id: "mongodb",
         color: "#46b04e",
+        image: require("../../assets/images/skills/mongodb.png"),
         link: "https://www.mongodb.com"
       },
       {
@@ -117,6 +127,7 @@ const skills = ref([
         level: 5,
         id: "cplusplus",
         color: "#06407f",
+        image: require("../../assets/images/skills/cplusplus.png"),
         link: "https://docs.microsoft.com/cpp/cpp"
       },
       {
@@ -124,6 +135,7 @@ const skills = ref([
         level: 70,
         id: "git",
         color: "#ee5132",
+        image: require("../../assets/images/skills/git.png"),
         link: "https://git-scm.com"
       },
     ],
@@ -136,6 +148,7 @@ const skills = ref([
         years: 3,
         id: "windows",
         color: "#00abed",
+        image: require("../../assets/images/skills/windows.png"),
         link: "https://www.microsoft.com/windows"
       },
       {
@@ -143,6 +156,7 @@ const skills = ref([
         years: 1.5,
         id: "kali",
         color: "#2785f3",
+        image: require("../../assets/images/skills/kali.png"),
         link: "https://www.kali.org"
       },
       {
@@ -150,6 +164,7 @@ const skills = ref([
         years: 1,
         id: "ubuntu",
         color: "#f47320",
+        image: require("../../assets/images/skills/ubuntu.png"),
         link: "https://ubuntu.com"
       }
     ],
@@ -162,6 +177,7 @@ const skills = ref([
         level: 30,
         id: "blender",
         color: "#fd6e1e",
+        image: require("../../assets/images/skills/blender.png"),
         link: "https://www.blender.org"
       },
       {
@@ -169,6 +185,7 @@ const skills = ref([
         level: 80,
         id: "figma",
         color: "#66bb6a",
+        image: require("../../assets/images/skills/figma.png"),
         link: "https://www.figma.com"
       },
       {
@@ -176,6 +193,7 @@ const skills = ref([
         level: 50,
         id: "illustrator",
         color: "#ff5722",
+        image: require("../../assets/images/skills/illustrator.png"),
         link: "https://www.adobe.com/products/illustrator.html"
       },
       {
@@ -183,6 +201,7 @@ const skills = ref([
         level: 70,
         id: "premiere-pro",
         color: "#e040fb",
+        image: require("../../assets/images/skills/premiere-pro.png"),
         link: "https://www.adobe.com/products/premiere.html"
       }
     ]
@@ -213,9 +232,17 @@ const skills = ref([
           background-color: var(--card-color);
 
           .banner {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 180px;
             border-radius: 6px 6px 0 0;
-            height: 70px;
+            height: 170px;
             width: 100%;
+            transition: 0.2s;
+          }
+
+          &:hover { 
+            .banner { background-size: 110% 200px; }
           }
 
           .skill-name {
@@ -279,6 +306,23 @@ const skills = ref([
       .skill {
         .cards {
           grid-template-columns: 1fr;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    .skills {
+      .skill {
+        .cards {
+          .card {
+            .banner {
+              background-size: 100% 150px;
+              height: 140px;
+            }
+          }
         }
       }
     }
