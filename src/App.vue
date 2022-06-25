@@ -17,6 +17,8 @@ html {
   --header-height: 4rem;
   --theme-button-color: transparent;
   --z-index-background: -1;
+  --z-index-page: 1;
+  --z-index-calque: 2;
   --z-index-sidebar: 6;
   --z-index-navbar: 10;
   --z-index-notification: 100;

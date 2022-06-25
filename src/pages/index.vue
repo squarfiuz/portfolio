@@ -41,6 +41,7 @@ const notifications = ref(store.state.notifications);
 }
 
 .page {
+  z-index: var(--z-index-page);
   padding-top: var(--header-height);
 
   .content { height: 100%; }

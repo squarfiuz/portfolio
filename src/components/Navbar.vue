@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div v-if="sidebar_enable" @click="sidebar_close()" class="calque"></div>
     <header class="navbar">
       <div class="sidebar-button" @click="sidebar_toggle">
         <font-awesome-icon icon="bars" type="fa" class="icon" />
@@ -39,7 +40,7 @@
     <aside :class="`sidebar ${sidebar_enable ? 'open' : ''}`">
       <nav class="nav-links">
         <div v-for="navlink in navlinks" :key="navlink.id" class="item">
-          <router-link v-if="navlink.type === 'router-link'" :to="navlink.link" :class="`link ${store.state.page === navlink.id ? 'active' : ''}`">
+          <router-link v-if="navlink.type === 'router-link'" :to="navlink.link" :class="`link ${store.state.page === navlink.id ? 'active' : ''}`" @click="sidebar_close()">
             {{ translation.navlinks[navlink.id] }}
           </router-link>
           <a v-if="navlink.type === 'link'" :href="navlink.link" target="_blank" class="link">
@@ -138,20 +139,32 @@ function sidebar_toggle() {
   sidebar_enable.value = !sidebar_enable.value;
 };
 
+function sidebar_close() {
+  sidebar_enable.value = false;
+};
+
 function dropdown_toggle(name) {
   if (dropdown_active.value.includes(name)) {
     dropdown_active.value = dropdown_active.value.filter(item => item !== name);
   } else {
     dropdown_active.value.push(name);
   }
-
-  console.log(dropdown_active);
 }
 
 
 </script>
 
 <style lang="scss" scoped>
+.calque {
+  z-index: var(--z-index-calque);
+  position: fixed;
+  display: none;
+  background-color: #000;
+  opacity: 0.6;
+  height: 100%;
+  width: 100%;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -346,6 +359,8 @@ function dropdown_toggle(name) {
 }
 
 @media only screen and (max-width: 900px) {
+  .calque { display: block; }
+
   .navbar {
     .sidebar-button { display: flex; }
 
